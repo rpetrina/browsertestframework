@@ -38,4 +38,5 @@ $ docker-compose down
 ```
 
 * You can run the tests again by repeating Steps 3-5. Note that you can specify the user's information in the [FindRate.spec](specs/FindRate.spec) file. New user information is required to reproduce the new user sign up functionality.
+  * It may not be necessary to run "mvn test-compile" for each test run.
 * Test reports are available in the reports directory.
