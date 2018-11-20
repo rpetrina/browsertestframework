@@ -12,11 +12,11 @@ $ docker build --no-cache -t gaugejavaseleniumtest:latest .
 
 ## Step 2: Build the tests using the gaugejavaselenium container
 
+* Note: On windows, use "cd" instead of $PWD
+
 ```bash
 $ docker run -v $PWD:/project gaugejavaseleniumtest /bin/bash -c "cd /project && mvn test-compile"
 ```
-
-* TODO: Add $PWD Windows equivalent
 
 ## Step 3: Set up the selenium Docker images
 
@@ -25,9 +25,6 @@ $ docker-compose up -d
 ```
 
 ## Step 4: Run the tests using the gaugejavaselenium container
-
-* TODO: Command below needs access to the other containers
-* TODO: Add $PWD Windows equivalent
 
 ```bash
 $ docker run --link selenium-hub:hub -v $PWD:/project gaugejavaseleniumtest mvn gauge:execute -DspecsDir=specs
