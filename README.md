@@ -26,7 +26,7 @@ $ docker run --link browsertestframework_hub_1 -it --net browsertestframework_de
 $ docker-compose down
 ```
 
-* You can run the tests again by repeating Steps 3-5. Note that you can specify the user's information in the [FindRate.spec](specs/FindRate.spec) file. New user information is required to reproduce the new user sign up functionality.
+* You can run the tests again by repeating Steps 2-4. Note that you can specify the user's information in the [FindRate.spec](specs/FindRate.spec) file. New user information is required to reproduce the new user sign up functionality.
   * It may not be necessary to run "mvn test-compile" for each test run.
 * Test reports are available in the [reports](reports) directory.
   * You can view the results of the test by opening FindRate.html in a browser after running the test. This file can be found in the html-report/specs directory.
