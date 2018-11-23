@@ -7,6 +7,8 @@ import org.openqa.selenium.remote.DesiredCapabilities;
 import com.thoughtworks.gauge.AfterSuite;
 import com.thoughtworks.gauge.BeforeSuite;
 import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.ie.InternetExplorerDriver;
 import java.net.MalformedURLException;
 
@@ -15,8 +17,8 @@ public class DriverFactory {
 
     public static WebDriver getDriver() { return driver; }
 
-    Capabilities chromeCapabilities = DesiredCapabilities.chrome();
-    Capabilities firefoxCapabilities = DesiredCapabilities.firefox();
+    Capabilities chromeCapabilities = new ChromeOptions();
+    Capabilities firefoxCapabilities = new FirefoxOptions();
     private static String BROWSER = System.getenv("BROWSER");
     private static final String URL = System.getenv("APP_URL");
 
