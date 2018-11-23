@@ -1,5 +1,8 @@
 version: '2'
 services:
+  app:
+    container_name: javagaugeselenium  
+    build: .
   firefox:
     image: selenium/node-firefox
     #image: selenium/node-firefox-debug
