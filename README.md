@@ -9,7 +9,7 @@
 ```bash
 $ docker-compose rm -f
 $ docker-compose pull
-$ docker-compose up --build -d
+$ docker-compose build --no-cache && docker-compose up -d
 ```
 
 ## Step 3: Run the tests using the gaugejavaselenium container
