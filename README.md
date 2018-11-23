@@ -17,8 +17,7 @@ $ docker-compose build --no-cache && docker-compose up -d
 * Note: On windows, use %cd% instead of $PWD
 
 ```bash
-$ docker run --link selenium-hub:hub -v $PWD:/project gaugejavaseleniumtest mvn gauge:execute -DspecsDir=specs
-docker run --link browsertestframework_hub_1 -it --net browsertestframework_default -v $PWD:/project gaugejavaseleniumtest /bin/bash -c "cd /project && mvn test-compile && mvn gauge:execute -DspecsDir=specs"
+$ docker run --link browsertestframework_hub_1 -it --net browsertestframework_default -v $PWD:/project gaugejavaseleniumtest /bin/bash -c "cd /project && mvn test-compile && mvn gauge:execute -DspecsDir=specs"
 ```
 
 ## Step 4: Kill the docker containers for each browser to clean up
