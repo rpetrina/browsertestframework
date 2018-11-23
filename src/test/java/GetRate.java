@@ -1,6 +1,8 @@
+import com.thoughtworks.gauge.Gauge;
 import com.thoughtworks.gauge.Step;
 import org.junit.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.Cookie;
 import org.openqa.selenium.TimeoutException;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
@@ -10,10 +12,13 @@ import java.util.List;
 
 public class GetRate extends Base {
 
-    Boolean existinguser = false;
+    private Boolean existinguser = false;
+    private Cookie iceiceab = new Cookie("iceiceab_disabled", "true");
 
     @Step("Go to the LH Page")
     public void gotoLHpage() {
+        webDriver.get("http://www.lh-stage.com/");
+        webDriver.manage().addCookie(iceiceab);
         webDriver.get("http://www.lh-stage.com/");
     }
 
@@ -33,7 +38,6 @@ public class GetRate extends Base {
                 break;
             }
         }
-
     }
 
     @Step("Select stage of purchase <purchasestage>")
@@ -76,7 +80,7 @@ public class GetRate extends Base {
         try {
             waitforphonenumber.until(ExpectedConditions.elementToBeClickable(map.phoneNumber()));
         } catch (TimeoutException e) {
-            System.out.println("User already has an account. Logging in...");
+            Gauge.writeMessage("User already has an account. Logging in...");
             existinguser = true;
             wait.until(ExpectedConditions.elementToBeClickable(map.password()));
             map.password().sendKeys("abcdefg2");
@@ -95,11 +99,13 @@ public class GetRate extends Base {
 
     @Step("Validate that <Get your personalized rate in 3 minutes.> and the get my rate button are present")
     public void validatetextandbuttonarepresent(String arg0) {
+        WebDriverWait waitforconfirmationpage = new WebDriverWait(webDriver, 30);
         if (!existinguser) {
             wait.until(ExpectedConditions.elementToBeClickable(map.continuebutton())).click();
         }
 
-        wait.until((ExpectedConditions.visibilityOf(map.welcomesection())));
+        waitforconfirmationpage.until((ExpectedConditions.visibilityOf(map.welcomesection())));
+        waitforconfirmationpage.until(ExpectedConditions.visibilityOf(map.getmyratebutton()));
         Assert.assertTrue(map.welcomesection().findElement(By.xpath("//*/h1")).getText().equalsIgnoreCase(arg0));
         Assert.assertTrue(map.getmyratebutton().isDisplayed());
     }
