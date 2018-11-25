@@ -14,6 +14,8 @@ $ docker-compose pull
 $ docker-compose build --no-cache && docker-compose up -d
 ```
 
+* This step may take some time to complete while docker creates the images needed.
+
 ## Step 4: Run the tests using the gaugejavaselenium container
 
 * Note: On windows, use %cd% instead of $PWD
@@ -35,3 +37,4 @@ $ docker-compose down
 * You can specify the initial test URL and the browser under which to test in [user.properties](env/default/user.properties)
 * Test reports are available in the [reports](reports) directory.
   * You can view the results of the test by opening FindRate.html in a browser after running the test. This file can be found in the html-report/specs directory.
+* You can watch the text execution when the browser images in [docker-compose.yml](docker-compose.yml) are using the debug versions, by connecting to localhost:5900 (Firefox) or 5901 (Chrome) with VNC. When prompted for a password, use 'secret'
