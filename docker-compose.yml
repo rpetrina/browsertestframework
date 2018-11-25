@@ -13,6 +13,8 @@ services:
       - hub
     environment:
       HUB_HOST: hub
+    ports:
+      - "5900:5900"
 
   chrome:
     image: selenium/node-chrome
@@ -23,6 +25,8 @@ services:
       - hub
     environment:
       HUB_HOST: hub
+    ports:
+      - "5901:5900"
 
   hub:
     container_name: browsertestframework_hub
