@@ -1,0 +1,9 @@
+target
+reports
+logs
+.git
+.gauge
+.gitignore
+docker-compose.yml
+Dockerfile
+README.md
