@@ -1,34 +1,27 @@
-# browsertestframework
+# browsertestframework-rpetrina
 
-## Step 1: Set up docker
+## Step 1: Clone this repository
 
-* Install docker
-* Set up the Gauge-Selenium docker image
+## Step 2: Set up docker
 
-```bash
-$ docker pull circleci/openjdk:8-jdk-browsers
-$ docker build --no-cache -t gaugejavaseleniumtest:latest .
-```
+* Install docker (or Docker For Windows)
 
-## Step 2: Build the tests using the gaugejavaselenium container
-
-* Note: On windows, use "cd" instead of $PWD
+## Step 3: Set up the Selenium Docker images
 
 ```bash
-$ docker run -v $PWD:/project gaugejavaseleniumtest /bin/bash -c "cd /project && mvn test-compile"
+$ docker-compose rm -f
+$ docker-compose pull
+$ docker-compose build --no-cache && docker-compose up -d
 ```
 
-## Step 3: Set up the selenium Docker images
-
-```bash
-$ docker-compose up -d
-```
+* This step may take some time to complete while docker creates the images needed.
 
 ## Step 4: Run the tests using the gaugejavaselenium container
 
+* Note: On windows, use %cd% instead of $PWD
+
 ```bash
-$ docker run --link selenium-hub:hub -v $PWD:/project gaugejavaseleniumtest mvn gauge:execute -DspecsDir=specs
-docker run --link browsertestframework_hub_1 -it --net browsertestframework_default -v $PWD:/project gaugejavaseleniumtest /bin/bash -c "cd /project && mvn test-compile && mvn gauge:execute -DspecsDir=specs"
+$ docker run --link browsertestframework_hub -it --net browsertestframework_default -v $PWD:/project browsertestframework_javagaugeselenium /bin/bash -c "cd /project && mvn test-compile && mvn gauge:execute -DspecsDir=specs -Dgaugeexecute=test"
 ```
 
 ## Step 5: Kill the docker containers for each browser to clean up
@@ -37,6 +30,11 @@ docker run --link browsertestframework_hub_1 -it --net browsertestframework_defa
 $ docker-compose down
 ```
 
-* You can run the tests again by repeating Steps 3-5. Note that you can specify the user's information in the [FindRate.spec](specs/FindRate.spec) file. New user information is required to reproduce the new user sign up functionality.
+* You can run the tests again by repeating Steps 3-5.
+  * For repeated test runs, Step 3 can be simplified to "docker-compose build && docker-compose up -d".
   * It may not be necessary to run "mvn test-compile" for each test run.
-* Test reports are available in the reports directory.
+* Note: you can specify the user's information in the [FindRate.spec](specs/FindRate.spec) file.
+* You can specify the initial test URL and the browser under which to test in [user.properties](env/default/user.properties)
+* Test reports are available in the [reports](reports) directory.
+  * You can view the results of the test by opening FindRate.html in a browser after running the test. This file can be found in the html-report/specs directory.
+* You can watch the text execution when the browser images in [docker-compose.yml](docker-compose.yml) are using the debug versions, by connecting to localhost:5900 (Firefox) or 5901 (Chrome) with VNC. When prompted for a password, use 'secret'

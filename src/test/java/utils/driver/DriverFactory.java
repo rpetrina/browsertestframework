@@ -34,14 +34,14 @@ public class DriverFactory {
                 driver = new InternetExplorerDriver();
                 break;
             case "FIREFOX":
-                RemoteWebDriver firefox = new RemoteWebDriver(new URL("http://browsertestframework_hub_1:4444/wd/hub"), firefoxCapabilities);
+                RemoteWebDriver firefox = new RemoteWebDriver(new URL("http://browsertestframework_hub:4444/wd/hub"), firefoxCapabilities);
                 driver = firefox;
-                driver.get(URL);
+                //driver.get(URL);
                 break;
             default:
-                RemoteWebDriver chrome = new RemoteWebDriver(new URL("http://browsertestframework_hub_1:4444/wd/hub"), chromeCapabilities);
+                RemoteWebDriver chrome = new RemoteWebDriver(new URL("http://browsertestframework_hub:4444/wd/hub"), chromeCapabilities);
                 driver = chrome;
-                driver.get(URL);
+                //driver.get(URL);
             }
 
         } catch (MalformedURLException e) {
@@ -52,7 +52,9 @@ public class DriverFactory {
     @AfterSuite
     public void tearDown() {
         driver.close();
-        driver.quit();
+        if (!BROWSER.toUpperCase().equals("FIREFOX")) {
+            driver.quit();
+        }
     }
     
 }

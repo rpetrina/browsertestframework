@@ -101,7 +101,7 @@ public class GetRate extends Base {
     public void validatetextandbuttonarepresent(String arg0) {
         WebDriverWait waitforconfirmationpage = new WebDriverWait(webDriver, 30);
         if (!existinguser) {
-            wait.until(ExpectedConditions.elementToBeClickable(map.continuebutton())).click();
+            waitforconfirmationpage.until(ExpectedConditions.elementToBeClickable(map.continuebutton())).click();
         }
 
         waitforconfirmationpage.until((ExpectedConditions.visibilityOf(map.welcomesection())));
