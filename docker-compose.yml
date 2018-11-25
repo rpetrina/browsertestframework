@@ -1,6 +1,6 @@
 version: '2'
 services:
-  app:
+  javagaugeselenium:
     container_name: javagaugeselenium  
     build: .
   firefox:
@@ -25,6 +25,7 @@ services:
       HUB_HOST: hub
 
   hub:
+    container_name: browsertestframework_hub
     image: selenium/hub
     ports:
       - "4444:4444"
