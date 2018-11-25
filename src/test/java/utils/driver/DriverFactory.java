@@ -52,7 +52,9 @@ public class DriverFactory {
     @AfterSuite
     public void tearDown() {
         driver.close();
-        driver.quit();
+        if (!BROWSER.toUpperCase().equals("FIREFOX")) {
+            driver.quit();
+        }
     }
     
 }
