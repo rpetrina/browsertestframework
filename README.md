@@ -16,7 +16,7 @@ $ docker-compose build --no-cache && docker-compose up -d
 
 * This step may take some time to complete while docker creates the images needed.
 
-## Step 4: Run the tests using the gaugejavaselenium container
+## Step 4: Run the tests using the browsertestframework_javagaugeselenium container
 
 * Note: On windows, use %cd% instead of $PWD
 
