@@ -36,6 +36,16 @@
             <version>25.1-jre</version>
         </dependency>
     </dependencies>
+    <profiles>
+        <profile>
+            <activation>
+                <property>
+                    <name>gaugeexecute</name>
+                    <value>test</value>
+                </property>
+            </activation>
+        </profile>
+    </profiles>
 
     <build>
         <plugins>
@@ -54,7 +64,7 @@
                 <version>1.3.0</version>
                 <executions>
                     <execution>
-                        <phase>test</phase>
+                        <phase>${gaugeexecute}</phase>
                         <configuration>
                             <specsDir>specs</specsDir>
                         </configuration>
