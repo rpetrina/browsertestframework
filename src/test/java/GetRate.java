@@ -99,7 +99,7 @@ public class GetRate extends Base {
 
     @Step("Validate that <Get your personalized rate in 3 minutes.> and the get my rate button are present")
     public void validatetextandbuttonarepresent(String arg0) {
-        WebDriverWait waitforconfirmationpage = new WebDriverWait(webDriver, 30);
+        WebDriverWait waitforconfirmationpage = new WebDriverWait(webDriver, 60);
         if (!existinguser) {
             waitforconfirmationpage.until(ExpectedConditions.elementToBeClickable(map.continuebutton())).click();
         }
