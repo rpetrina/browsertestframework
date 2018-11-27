@@ -11,7 +11,7 @@
 ```bash
 $ docker-compose rm -f
 $ docker-compose pull
-$ docker-compose build --no-cache && docker-compose up -d
+$ docker-compose -p browsertestframework build --no-cache && docker-compose -p browsertestframework up -d
 ```
 
 * This step may take some time to complete while docker creates the images needed.
@@ -27,7 +27,7 @@ $ docker run --link browsertestframework_hub -it --net browsertestframework_defa
 ## Step 5: Kill the docker containers for each browser to clean up
 
 ```bash
-$ docker-compose down
+$ docker-compose -p browsertestframework down
 ```
 
 * You can run the tests again by repeating Steps 3-5.
