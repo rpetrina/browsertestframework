@@ -9,6 +9,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
+//import java.util.ArrayList;
 
 public class GetRate extends Base {
 
@@ -68,6 +69,9 @@ public class GetRate extends Base {
 
     @Step("Fill in personal information First Name <firstname>, Last Name <lastname>, Email <email>, Phone <phone>")
     public void filloutpersonalinfo(String firstname, String lastname, String email, String phone) {
+        //ArrayList<String> emailinfo = email.split('@');
+        email = email.replaceAll("@","+"+getrandomint(100000,1000000000).toString()+"@");
+        //email = String.join(emailinfo[0],"+"+getrandomint(100000,1000000000),"@",emailinfo[1]);
         wait.until(ExpectedConditions.elementToBeClickable(map.firstname()));
         map.firstname().sendKeys(firstname);
         map.lastname().sendKeys(lastname);
