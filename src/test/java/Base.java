@@ -15,7 +15,7 @@ public class Base {
 
     Random random = new Random();
     
-    private Integer getrandomint(Integer max, Integer min) {
+    public Integer getrandomint(Integer min, Integer max) {
         return random.nextInt(max + 1 - min) + min;
     }
 }
