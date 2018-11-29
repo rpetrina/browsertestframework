@@ -9,7 +9,6 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import java.util.List;
-//import java.util.ArrayList;
 
 public class GetRate extends Base {
 
@@ -69,9 +68,8 @@ public class GetRate extends Base {
 
     @Step("Fill in personal information First Name <firstname>, Last Name <lastname>, Email <email>, Phone <phone>")
     public void filloutpersonalinfo(String firstname, String lastname, String email, String phone) {
-        //ArrayList<String> emailinfo = email.split('@');
-        email = email.replaceAll("@","+"+getrandomint(100000,1000000000).toString()+"@");
-        //email = String.join(emailinfo[0],"+"+getrandomint(100000,1000000000),"@",emailinfo[1]);
+        Integer randomnum = getrandomint(1000,1000000);
+        email = email.replaceAll("@","+"+randomnum.toString()+"@");
         wait.until(ExpectedConditions.elementToBeClickable(map.firstname()));
         map.firstname().sendKeys(firstname);
         map.lastname().sendKeys(lastname);
@@ -104,9 +102,6 @@ public class GetRate extends Base {
     @Step("Validate that <Get your personalized rate in 3 minutes.> and the get my rate button are present")
     public void validatetextandbuttonarepresent(String arg0) {
         WebDriverWait waitforconfirmationpage = new WebDriverWait(webDriver, 60);
-        if (!existinguser) {
-            waitforconfirmationpage.until(ExpectedConditions.elementToBeClickable(map.continuebutton())).click();
-        }
 
         waitforconfirmationpage.until((ExpectedConditions.visibilityOf(map.welcomesection())));
         waitforconfirmationpage.until(ExpectedConditions.visibilityOf(map.getmyratebutton()));
